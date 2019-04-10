@@ -1,0 +1,10 @@
+page-login {
+    ion-row {
+        &.form {
+            min-height: 180px;
+        }
+    }
+    ion-col {
+        text-align: center;
+    }
+}
