@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="secondary">
+      <ion-button id="logout" routerDirection="root" href="/login">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Main Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>User Information</ion-list-header>
+    <ion-item>
+      Username
+      <ion-note slot="end">
+        {{user?.username}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Email
+      <ion-note slot="end">
+        {{user?.email}}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

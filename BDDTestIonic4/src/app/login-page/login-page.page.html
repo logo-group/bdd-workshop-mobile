@@ -1,0 +1,40 @@
+<ion-content padding>
+  <ion-grid ion-fixed>
+    <ion-row justify-content-center>
+      <ion-col col-auto align-self-center class="app-name">
+        <img src="assets/logo.jpg" />
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center class="form">
+      <ion-col size="10">
+        <form [formGroup]="loginForm" id="loginForm">
+          <ion-item id="username">
+            <ion-label color="white" class="text" position="floating">
+              <ion-icon name="person"></ion-icon>
+              username
+            </ion-label>
+            <ion-input type="username" formControlName="username" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item id="password">
+            <ion-label color="white" class="text" position="floating">
+              <ion-icon name="lock"></ion-icon>
+              password
+            </ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col size="5">
+        <ion-button id="signup" fill="clear" expand="block" routerDirection="forward" href="/signup">
+          <ion-icon slot="start" name="key"></ion-icon>signup
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-button id="login" ion-button color="primary" expand="full" (click)="setupPageNavigation()"
+    [disabled]="!loginForm.valid">login</ion-button>
+</ion-footer>
