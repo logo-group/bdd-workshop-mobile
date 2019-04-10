@@ -30,7 +30,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 source ~/.bash_profile
 ```
 ### Prepare Project for Test
-Download Project via git or direct download. There are two project under repository. BDDCucumber folder is project that created with Ionic3 Framework, BDDTestProject folder is project that created with Ionic4 Framework. 
+Download Project via git or direct download. There are two project under repository. BDDTestIonic folder is project that created with Ionic3 Framework, BDDTestIonic4 folder is project that created with Ionic4 Framework. 
 Project not work because of service connection.
 
 Run operations are same both projects. 
