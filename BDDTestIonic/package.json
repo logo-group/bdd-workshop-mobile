@@ -14,7 +14,7 @@
     "build:android": "rimraf ./platforms/android && ionic cordova build android --prod",
     "e2e:android": "npm run build:android &&  protractor protractor-android.conf.js",
     "e2e:ios": "npm run build:ios && protractor protractor-ios.conf.js",
-    "e2e": "ionic-app-scripts build && protractor protractor-cucumber.conf.js",
+    "e2e": "ionic-app-scripts build && protractor protractor.conf.js",
     "appium": "appium"
   },
   "dependencies": {
