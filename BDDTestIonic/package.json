@@ -10,14 +10,11 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "postinstall": "webdriver-manager update",
-    "tsc-build": "tsc -p ./e2e/tsconfig.e2e.json",
-    "tsc-clean": "rimraf ./e2e/tsToJs",
-    "tsc-clean-build": "npm run tsc-clean && npm run tsc-build",
     "build:ios": "rimraf ./platforms/ios && ionic cordova platform add ios && cordova build ios --buildFlag='-UseModernBuildSystem=0'",
     "build:android": "rimraf ./platforms/android && ionic cordova build android --prod",
-    "e2e:android": "npm run build:android && npm run tsc-clean-build && protractor protractor-android.conf.js",
-    "e2e:ios": "npm run build:ios && npm run tsc-clean-build && protractor protractor-ios.conf.js",
-    "e2e": "npm run tsc-clean-build && ionic-app-scripts build && protractor protractor-cucumber.conf.js",
+    "e2e:android": "npm run build:android &&  protractor protractor-android.conf.js",
+    "e2e:ios": "npm run build:ios && protractor protractor-ios.conf.js",
+    "e2e": "ionic-app-scripts build && protractor protractor-cucumber.conf.js",
     "appium": "appium"
   },
   "dependencies": {

@@ -24,6 +24,10 @@ export class LoginPagePage {
     public alertCtrl: AlertController,
     public loadingCrtl: LoadingController
   ) {
+    this.createLoader();
+  }
+
+  createLoader() {
     this.loadingCrtl.create().then(load => this.loading = load);
   }
 
@@ -32,6 +36,7 @@ export class LoginPagePage {
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).then(user => {
       this.router.navigateByUrl('/home');
       this.loading.dismiss();
+      this.createLoader();
     }).catch(err => {
       console.log(JSON.stringify(err));
       this.closeLoadingAndShowError(err);
@@ -40,6 +45,7 @@ export class LoginPagePage {
 
   closeLoadingAndShowError(err: Error) {
     this.loading.dismiss();
+    this.createLoader();
     this.alertCtrl.create({
       header: 'Login failed',
       message: err.message,

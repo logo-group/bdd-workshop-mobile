@@ -10,35 +10,45 @@ export class AuthenticationServiceService {
   constructor(private http: HttpClient) { }
 
   async login(username: string, password: string) {
-    const res: any = await this.http.post(configuration.baseUrl.service + 'user/login', { username: username, password: password }).toPromise();
-    if (res.loginStatus) {
-      this.userId = res.userId;
-    } else {
-      throw new Error(res.message);
+    try {
+      const res: any = await this.http.post(
+        configuration.baseUrl.service + 'user/signIn',
+        null,
+        { params: { username: username, password: password }, responseType: 'text' }
+      ).toPromise();
+      this.userId = res;
+    } catch (err) {
+      const e = JSON.parse(err.error);
+      throw new Error(e.message);
     }
   }
 
-
   async signup(email: string, username: string, password: string) {
-    const res = await this.http.post(
-      configuration.baseUrl.service + 'user/signUp',
-      {
-        username: username,
-        email: email,
-        password: password
-      }
-    ).toPromise();
-    return res;
+    try {
+      const res = await this.http.post(
+        configuration.baseUrl.service + 'user/signUp',
+        {
+          username: username,
+          email: email,
+          password: password
+        }
+      ).toPromise();
+      return res;
+    } catch (err) {
+      const e = err.error;
+      throw new Error(e.message);
+    }
   }
 
   async getUser(id: string) {
-    const res: any = await this.http.get(
-      configuration.baseUrl.service + 'user/user', {params: {userId: id}}
-    ).toPromise();
-    console.log(res);
-    if (res.status) {
-      throw new Error(res.error);
+    try {
+      const res: any = await this.http.get(
+        configuration.baseUrl.service + 'user/user', { params: { userId: id } }
+      ).toPromise();
+      return res;
+    } catch (err) {
+      const e = err.error;
+      throw new Error(e.message);
     }
-    return res;
   }
 }

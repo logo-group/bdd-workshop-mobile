@@ -41,6 +41,7 @@ export class LoginPage {
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).then(user => {
       this.navCtrl.setRoot(HomePage);
       this.loading.dismiss();
+      this.loading = this.loadingCrtl.create();
     }).catch(err => {
       console.log(JSON.stringify(err));
       this.closeLoadingAndShowError(err);
@@ -49,6 +50,7 @@ export class LoginPage {
 
   closeLoadingAndShowError(err: Error) {
     this.loading.dismiss();
+    this.loading = this.loadingCrtl.create();
     this.alertCtrl.create({
       title: 'Login failed',
       message: err.message,

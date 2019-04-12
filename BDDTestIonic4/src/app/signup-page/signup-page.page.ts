@@ -24,14 +24,20 @@ export class SignupPagePage {
     public alertCtrl: AlertController,
     public loadingCrtl: LoadingController
   ) {
+    this.createLoader();
+  }
+
+  createLoader() {
     this.loadingCrtl.create().then(load => this.loading = load);
   }
+
 
   setupPageNavigation() {
     this.loading.present();
     this.authService.signup(this.loginForm.value.email, this.loginForm.value.username, this.loginForm.value.password).then(user => {
       this.router.navigateByUrl('/login');
       this.loading.dismiss();
+      this.createLoader();
     }).catch(err => {
       console.log(JSON.stringify(err));
       this.closeLoadingAndShowError(err);
@@ -40,6 +46,7 @@ export class SignupPagePage {
 
   closeLoadingAndShowError(err: Error) {
     this.loading.dismiss();
+    this.createLoader();
     this.alertCtrl.create({
       header: 'Signup Failed',
       message: err.message,
