@@ -1,4 +1,5 @@
-import { browser, by, ElementFinder, $, element, protractor } from 'protractor';
+import { browser, by, ElementFinder, $, element } from 'protractor';
+import { protractor } from 'protractor/built/ptor';
 
 export class GeneralHelper {
 
@@ -8,14 +9,18 @@ export class GeneralHelper {
         let exists;
         for (const item of finderDeepList) {
             console.log(item);
-            exists = await this.checkExists(item, foundItem);
-            if (!exists) {
-                await browser.sleep(3000);
+            try {
                 exists = await this.checkExists(item, foundItem);
-            }
-            console.log(item + ' exists is ' + exists);
-            if (exists) {
-                foundItem = await this.getItemInstance(item, foundItem);
+                if (!exists) {
+                    await browser.sleep(3000);
+                    exists = await this.checkExists(item, foundItem);
+                }
+                console.log(item + ' exists is ' + exists);
+                if (exists) {
+                    foundItem = await this.getItemInstance(item, foundItem);
+                }
+            } catch (err) {
+                console.error(err);
             }
         }
         return exists;
@@ -81,7 +86,8 @@ export class GeneralHelper {
             try {
                 const expected = browser.ExpectedConditions;
                 await browser.wait(expected.elementToBeClickable(item), 3000);
-                await item.click();
+                // await item.click();
+                browser.executeScript('arguments[0].click()', item.getWebElement());
                 console.error(finder + 'Item Clicked');
             } catch (e) {
                 try {

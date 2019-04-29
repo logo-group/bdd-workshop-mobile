@@ -35,9 +35,13 @@ export class SignupPagePage {
   setupPageNavigation() {
     this.loading.present();
     this.authService.signup(this.loginForm.value.email, this.loginForm.value.username, this.loginForm.value.password).then(user => {
-      this.router.navigateByUrl('/login');
       this.loading.dismiss();
       this.createLoader();
+      this.alertCtrl.create({
+        header: 'Signup Successfully',
+        message: '',
+        buttons: ['OK']
+      }).then(alert => alert.present());
     }).catch(err => {
       console.log(JSON.stringify(err));
       this.closeLoadingAndShowError(err);

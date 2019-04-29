@@ -43,6 +43,10 @@ export class LoginPagePage {
     });
   }
 
+  navigateSignup() {
+    this.router.navigateByUrl('/signup');
+  }
+
   closeLoadingAndShowError(err: Error) {
     this.loading.dismiss();
     this.createLoader();

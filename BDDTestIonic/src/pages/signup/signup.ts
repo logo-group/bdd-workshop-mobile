@@ -38,8 +38,12 @@ export class SignupPage {
     this.loading.present();
     this.loading = this.loadingCrtl.create();
     this.authService.signup(this.loginForm.value.email, this.loginForm.value.username, this.loginForm.value.password).then(user => {
-      this.navCtrl.pop();
-      this.loading.dismiss();
+      this.loading = this.loadingCrtl.create();
+      this.alertCtrl.create({
+        title: 'Signup Successfully',
+        message: '',
+        buttons: ['OK']
+      }).present();
     }).catch(err => {
       console.log(JSON.stringify(err));
       this.closeLoadingAndShowError(err);
